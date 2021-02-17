@@ -14,6 +14,20 @@ class Pegawai extends React.Component {
             search: "", 
             isModalOpen: false,
         }  
+        
+        if (localStorage.getItem("token")) {
+            this.state.token = localStorage.getItem("token")
+        } else {
+            window.location = "/login"
+        }
+        this.headerConfig.bind(this)
+    }
+
+    headerConfig = () => {
+        let header = {
+            headers: { Authorization: `Bearer ${this.state.token}` }
+        }
+        return header
     }
 
     bind = (event) => {
