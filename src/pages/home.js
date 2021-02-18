@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Navbarr from '../components/navbar'
+import NavBar from '../components/navbar'
 
 class Home extends React.Component{
     constructor(){
@@ -14,7 +14,7 @@ class Home extends React.Component{
         if (localStorage.getItem("token")) {
             this.state.token = localStorage.getItem("token")
         } else {
-            window.location = "/login"
+            window.location = "/register"
         }
     }
 
@@ -51,7 +51,7 @@ class Home extends React.Component{
     render(){
         return(
             <div>
-                <Navbarr />
+                <NavBar />
                 <div className="container mt-2">
                     <h3 className="my-2">
                         <strong>Welcome back, {this.state.userName}</strong>

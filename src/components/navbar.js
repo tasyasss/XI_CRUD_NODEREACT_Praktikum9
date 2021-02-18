@@ -8,13 +8,18 @@ class NavBar extends React.Component {
         localStorage.removeItem("user")
         window.location = "/login"
     }
+
+    Pegawai = () => {
+        window.location = "/pegawai"
+    }
  
     render(){
         return(
             <Navbar bg="light" variant="light">
                 <Navbar.Brand> <Link to='/'>Home</Link></Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link> <Link to='/pegawai' /> Pegawai </Nav.Link>
+                    {/* <Nav.Link> <Link to='/pegawai'>Pegawai</Link></Nav.Link> */}
+                    <Nav.Link onClick={() => this.Pegawai()}>Pegawai</Nav.Link>
                     <Nav.Link onClick={() => this.Logout()}>Logout</Nav.Link>
                 </Nav>
             </Navbar>

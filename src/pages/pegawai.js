@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import NavBar from '../components/navbar'
 import {Button, Modal, Table, Card, Form} from 'react-bootstrap';
 
 class Pegawai extends React.Component {
@@ -78,7 +79,7 @@ class Pegawai extends React.Component {
         }
 
         // mengirim data ke api untuk disimpan pada database
-        axios.post(url, form)
+        axios.post(url, form, this.headerConfig())
         .then(response => {
             // jika proses simPn berhasil, memanggil data yang terbaru
             this.getPegawai();
@@ -96,7 +97,7 @@ class Pegawai extends React.Component {
         let url = "http://localhost:2000/pegawai/";
         // mengakses api untuk mengambil data pegawai
         
-        axios.get(url)
+        axios.get(url, this.headerConfig())
         .then(response => {
           // mengisikan data dari respon API ke array pegawai
           this.setState({pegawai: response.data.pegawai});
@@ -118,7 +119,7 @@ class Pegawai extends React.Component {
             // mengakses api untuk mengambil data pegawai
             // berdasarkan keyword
             
-            axios.post(url, form)
+            axios.post(url, form, this.headerConfig())
             .then(response => {
                 // mengisikan data dari respon api ke array pegawai
                 this.setState({pegawai: response.data.pegawai});
@@ -139,7 +140,7 @@ class Pegawai extends React.Component {
         let url = "http://localhost:2000/pegawai/" + id_pegawai;
         // memanggil url api untuk menghappus data pada database
         if (window.confirm('Hapus data ini?')) {
-            axios.delete(url)
+            axios.delete(url, this.headerConfig())
             .then(response => {
                 // jika proses hapus data berhasil, memanggil data yang terbaru
                 this.getPegawai();
@@ -158,6 +159,7 @@ class Pegawai extends React.Component {
     render(){
         return(
             <>
+                <NavBar />
                 <Card>
                     <Card.Header className="card-header bg-info text-white" align={'center'}>
                         Data Pegawai

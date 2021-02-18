@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {Card, Form, Button, Container} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 class Login extends React.Component {
     constructor () {
@@ -70,6 +71,8 @@ class Login extends React.Component {
                                 </Form.Group>
                             </Card.Text>
                             <Button variant="secondary" type="submit">Submit</Button>
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            <Link to='/register'><strong>don't have an account yet?</strong></Link>
                         </Form>
                     </Card.Body>
                 </Card>
