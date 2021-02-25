@@ -9,6 +9,14 @@ class NavBar extends React.Component {
         window.location = "/login"
     }
 
+    Siswa = () => {
+        window.location = "/siswa"
+    }
+
+    Pelanggaran = () => {
+        window.location = "/pelanggaran"
+    }
+
     Pegawai = () => {
         window.location = "/pegawai"
     }
@@ -19,6 +27,8 @@ class NavBar extends React.Component {
                 <Navbar.Brand> <Link to='/'>Home</Link></Navbar.Brand>
                 <Nav className="mr-auto">
                     {/* <Nav.Link> <Link to='/pegawai'>Pegawai</Link></Nav.Link> */}
+                    <Nav.Link onClick={() => this.Siswa()}>Siswa</Nav.Link>
+                    <Nav.Link onClick={() => this.Pelanggaran()}>Pelanggaran Siswa</Nav.Link>
                     <Nav.Link onClick={() => this.Pegawai()}>Pegawai</Nav.Link>
                     <Nav.Link onClick={() => this.Logout()}>Logout</Nav.Link>
                 </Nav>

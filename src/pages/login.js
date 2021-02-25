@@ -32,7 +32,7 @@ class Login extends React.Component {
                 let token = response.data.token
                 localStorage.setItem("user", JSON.stringify(user))
                 localStorage.setItem("token", token)
-                this.props.history.push("/pegawai")
+                this.props.history.push("/")
             } else {
                this.setState({message: response.data.message})
             }
@@ -44,7 +44,8 @@ class Login extends React.Component {
         return(
             <Container className="container d-flex justify-content-center align-itemscenter">
                 <Card className="col-sm-6 card my-5">
-                    <Card.Header className="card-header bg-secondary text-white textcenter">LOGIN</Card.Header>
+                    <br />
+                    <Card.Header className="card-header bg-danger text-white text-center">LOGIN</Card.Header>
                     <Card.Body>
                         { !this.state.logged ?
                         (
@@ -67,10 +68,10 @@ class Login extends React.Component {
                                     <Form.Control type="password" placeholder="Password" value=
                                     {this.state.password}
                                     onChange={ev => this.setState({password: ev.target.value})}
-                                    autoComplete="false" />
+                           git         autoComplete="false" />
                                 </Form.Group>
                             </Card.Text>
-                            <Button variant="secondary" type="submit">Submit</Button>
+                            <Button variant="danger" type="submit">Submit</Button>
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             <Link to='/register'><strong>don't have an account yet?</strong></Link>
                         </Form>
