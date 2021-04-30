@@ -8,14 +8,15 @@ class Home extends React.Component{
         this.state = {
             token: "",
             userName: null,
-            pegawaiCount: 0
+            pegawaiCount: 0,
+            pelanggaranCount: 0
         }
 
         if (localStorage.getItem("token")) {
             this.state.token = localStorage.getItem("token")
         } else {
             window.location = "/register"
-        }
+        } //this.headerConfig.bind(this)
     }
 
     headerConfig = () => {
@@ -46,6 +47,7 @@ class Home extends React.Component{
     getSiswa = () => {
         let url = "http://localhost:2000/siswa";
         // mengakses api untuk mengambil data siswa
+        //console.log(this.headerConfig())
         axios.get(url, this.headerConfig())
         .then(response => {
             // mengisikan data dari respon API ke array siswa
@@ -56,10 +58,55 @@ class Home extends React.Component{
         });
     }
 
+    getJurusan = () => {
+        let url = "http://localhost:2000/jurusan";
+        // mengakses api untuk mengambil data jurusan
+        //console.log(this.headerConfig())
+        axios.get(url, this.headerConfig())
+        .then(response => {
+            // mengisikan data dari respon API ke array jurusan
+            this.setState({jurusanCount: response.data.count});
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+    getPelanggaran = () => {
+        let url = "http://localhost:2000/pelanggaran"
+        // mengakses api untuk mengambil data pelanggaran
+        //console.log(this.headerConfig())
+        axios.get(url, this.headerConfig())
+        .then(response => {
+            // mengisikan data dari respon API ke array siswa
+            this.setState({pelanggaranCount: response.data.count});
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+    
+    getPelanggaranSiswa = () => {
+        let url = "http://localhost:2000/pelanggaran"
+        // mengakses api untuk mengambil data pelanggaran siswa
+        //console.log(this.headerConfig())
+        axios.get(url, this.headerConfig())
+        .then(response => {
+            // mengisikan data dari respon API ke array siswa
+            this.setState({pelanggaran_siswaCount: response.data.count});
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
     componentDidMount(){
         this.getUser()
         this.getPegawai()
         this.getSiswa()
+        this.getJurusan()
+        this.getPelanggaran()
+        this.getPelanggaranSiswa();
     }
 
     render(){
@@ -71,10 +118,11 @@ class Home extends React.Component{
                         <strong>Welcome back, {this.state.userName}</strong>
                     </h3>
                     <div className="row">
+                        {/* data count start */}
                         {/* pegawai count */}
                         <div className="col-lg-4 col-md-6 col-sm-12 mt-2">
                             <div className="card">
-                                <div className="card-body bg-success">
+                                <div className="card-body bg-warning">
                                     <h4 className="text-dark">
                                         <strong>Jumlah Pegawai</strong>
                                     </h4>
@@ -97,6 +145,46 @@ class Home extends React.Component{
                                 </div>
                             </div>
                         </div>
+                        {/* jurusan count */}
+                        <div className="col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <div className="card">
+                                <div className="card-body bg-success">
+                                    <h4 className="text-dark">
+                                        <strong>Jumlah Jurusan</strong>
+                                    </h4>
+                                    <h1 className="text-white">
+                                        <strong>{this.state.jurusanCount}</strong>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        {/* pelanggaran count */}
+                        <div className="col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <div className="card">
+                                <div className="card-body bg-success">
+                                    <h4 className="text-dark">
+                                        <strong>Jumlah Pelanggaran</strong>
+                                    </h4>
+                                    <h1 className="text-white">
+                                        <strong>{this.state.pelanggaranCount}</strong>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        {/* pelanggaran siswa count */}
+                        <div className="col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <div className="card">
+                                <div className="card-body bg-danger">
+                                    <h4 className="text-dark">
+                                        <strong>Jumlah Pelanggaran Siswa</strong>
+                                    </h4>
+                                    <h1 className="text-white">
+                                        <strong>{this.state.pelanggaran_siswaCount}</strong>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        {/* data count end */}
                     </div>
                 </div>
             </div>
